@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IEmployee} from "../../../interfaces/employee.interface";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {EmployeeService} from "../../services/employee.service";
 
 @Component({
   selector: 'app-employee-form',
@@ -12,12 +13,12 @@ export class EmployeeFormComponent implements OnInit {
   employee: IEmployee
 
 
-  constructor() {
+  constructor(private employeeService:EmployeeService) {
+    this._createForm()
 
   }
 
   ngOnInit(): void {
-    this._createForm()
   }
 
   _createForm(): void {
@@ -26,6 +27,18 @@ export class EmployeeFormComponent implements OnInit {
       employed: new FormControl(null),
       experience: new FormControl(null, [Validators.min(0.5), Validators.max(20)])
     })
+  }
+
+  newEmployee(): void {
+    const rawValue:IEmployee = this.employeeForm.getRawValue()
+    this.employeeService.employees.subscribe(value => {
+      if (value) {
+        value.push(rawValue)
+      } else {
+        value = [rawValue]
+      }
+    })
+
   }
 
 }

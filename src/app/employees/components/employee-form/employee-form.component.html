@@ -1,1 +1,7 @@
-<p>employee-form works!</p>
+<form [formGroup]="employeeForm">
+  <div><label>Model: <input type="text" formControlName="name"></label></div>
+  <div><label>Model: <input type="checkbox" formControlName="employed"></label></div>
+  <div><label>Model: <input type="number" formControlName="experience"></label></div>
+  <button (click)="newEmployee()">Add Employee</button>
+
+</form>
