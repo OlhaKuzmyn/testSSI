@@ -31,13 +31,22 @@ export class EmployeeFormComponent implements OnInit {
 
   newEmployee(): void {
     const rawValue:IEmployee = this.employeeForm.getRawValue()
-    this.employeeService.employees.subscribe(value => {
-      if (value) {
-        value.push(rawValue)
-      } else {
-        value = [rawValue]
-      }
-    })
+    this.employeeService.employees = [rawValue]
+    console.log(this.employeeService.employees, 'service');
+    // if (this.employeeService.employees) {
+    //   this.employeeService.employees.push(rawValue)
+    // } else {
+    //   this.employeeService.employees = [rawValue]
+    // }
+    // this.employeeService.employees.subscribe(value => {
+    //   console.log('subscribe')
+    //   console.log([rawValue])
+    //   // if (value) {
+    //   //   value.push(rawValue)
+    //   // }
+    //   value = [rawValue]
+
+    // })
 
   }
 

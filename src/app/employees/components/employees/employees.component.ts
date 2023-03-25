@@ -13,13 +13,15 @@ export class EmployeesComponent implements OnInit {
   constructor(private employeeService:EmployeeService) { }
 
   ngOnInit(): void {
-    this.employeeService.employees.subscribe(value => {
-      if (value) {
-        this.employees = value
-      } else {
-        this.employees = []
-      }
-    })
+    this.employees = this.employeeService.employees
+
+    // this.employeeService.employees.subscribe(value => {
+    //   if (value) {
+    //     this.employees = value
+    //   } else {
+    //     this.employees = []
+    //   }
+    // })
   }
 
 }
