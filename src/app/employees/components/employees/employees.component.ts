@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {IEmployee} from "../../../interfaces/employee.interface";
 import {EmployeeService} from "../../services/employee.service";
-import {DataService} from "../../services/data.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -17,7 +16,7 @@ export class EmployeesComponent implements OnInit {
   employeeUpdID: number
 
 
-  constructor(private employeeService:EmployeeService, private dataService:DataService) {
+  constructor(private employeeService:EmployeeService) {
     this._createForm()
   }
 
