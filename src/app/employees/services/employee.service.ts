@@ -1,18 +1,30 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {IEmployee} from "../../interfaces/employee.interface";
+import {HttpClient} from "@angular/common/http";
+import {urls} from "../../constants/urls";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  // employees = new BehaviorSubject<IEmployee[] | null>(null)
-  employees: IEmployee[]
+  getEmployees(): Observable<IEmployee[]> {
+    return this.httpClient.get<IEmployee[]>(urls.employees)
+  }
 
-  //  getAll(): Observable<IEmployee[]> {
-  //   return this.employees
-  // }
+  createEmployee(employee:IEmployee): Observable<IEmployee> {
+    return this.httpClient.post<IEmployee>(urls.employees, employee)
+  }
+
+  updateEmployeeByID(id:number, employeeUpd: IEmployee): Observable<IEmployee> {
+    return this.httpClient.patch<IEmployee>(`${urls.employees}/${id}`, employeeUpd)
+  }
+
+  deleteEmployee(id:number): Observable<void> {
+    return this.httpClient.delete<void>(`${urls.employees}/${id}`)
+  }
+
 }

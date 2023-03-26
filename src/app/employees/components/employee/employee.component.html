@@ -2,5 +2,5 @@
 <div>Employed: {{employee.employed}}</div>
 <div>Experience: {{employee.experience}}</div>
 
-<button>Update</button>
-<button>Delete</button>
+<button (click)="upd(employee)">Update</button>
+<button (click)="del(employee.id!, employee)">Delete</button>

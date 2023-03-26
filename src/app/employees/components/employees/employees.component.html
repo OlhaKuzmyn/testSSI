@@ -1,4 +1,18 @@
-<app-employee-form></app-employee-form>
+<form [formGroup]="employeeForm">
+  <div><label>Name: <input type="text" formControlName="name"></label></div>
+  <div><label>Employed: <input type="checkbox" formControlName="employed"></label></div>
+  <div><label>Experience: <input type="number" formControlName="experience"></label></div>
+  <button (click)="saveEmployee()">Add Employee</button>
+
+</form>
 <hr/>
 <h1>Employees</h1>
-<app-employee *ngFor="let employee of employees" [employee]="employee"></app-employee>
+
+<div *ngFor="let employee of employees">
+  <div>Name: {{employee.name}}</div>
+  <div>Employed: {{employee.employed}}</div>
+  <div>Experience: {{employee.experience}}</div>
+
+  <button (click)="upd(employee)">Update</button>
+  <button (click)="del(employee.id!)">Delete</button>
+</div>
